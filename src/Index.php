@@ -11,7 +11,7 @@ class Index
 
     /**
      * Native elasticsearch connection instance
-     * @var Connection
+     * @var \Elasticsearch\Client
      */
     public $connection;
 
@@ -30,7 +30,7 @@ class Index
 
     /**
      * Index create callback
-     * @var null
+     * @var \Closure|bool
      */
     public $callback;
 
@@ -57,8 +57,8 @@ class Index
 
     /**
      * Index constructor.
-     * @param $name
-     * @param null $callback
+     * @param string $name
+     * @param \Closure|bool $callback
      */
     function __construct($name, $callback = NULL)
     {
@@ -68,7 +68,7 @@ class Index
 
     /**
      * Set index shards
-     * @param $shards
+     * @param int $shards
      * @return $this
      */
     public function shards($shards)
@@ -80,7 +80,7 @@ class Index
 
     /**
      * Set index replicas
-     * @param $replicas
+     * @param int $replicas
      * @return $this
      */
     public function replicas($replicas)
@@ -117,7 +117,7 @@ class Index
 
     /**
      * Check existence of index
-     * @return mixed
+     * @return bool
      */
     public function exists()
     {
@@ -131,7 +131,7 @@ class Index
 
     /**
      * Create a new index
-     * @return mixed
+     * @return array
      */
     public function create()
     {
@@ -167,7 +167,7 @@ class Index
 
     /**
      * Drop index
-     * @return mixed
+     * @return array
      */
     public function drop()
     {

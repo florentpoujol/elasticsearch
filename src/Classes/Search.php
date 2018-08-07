@@ -25,7 +25,7 @@ class Search
 
     /**
      * The search query boost factor
-     * @var integer
+     * @var int
      */
     public $boost;
 
@@ -38,6 +38,8 @@ class Search
     /**
      * Search constructor.
      * @param Query $query
+     * @param string $q
+     * @param \Closure $settings
      */
     public function __construct(Query $query, $q, $settings = NULL)
     {
@@ -85,6 +87,7 @@ class Search
 
     /**
      * Build the native query
+     * @return void
      */
     public function build()
     {

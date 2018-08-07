@@ -19,19 +19,19 @@ class Bulk
 
     /**
      * The document key
-     * @var string
+     * @var string|bool
      */
     public $_id;
 
     /**
      * The index name
-     * @var string
+     * @var string|bool
      */
     public $index;
 
     /**
      * The type name
-     * @var string
+     * @var string|bool
      */
     public $type;
 
@@ -69,7 +69,7 @@ class Bulk
 
     /**
      * Set the index name
-     * @param $index
+     * @param string|bool $index
      * @return $this
      */
     public function index($index = false)
@@ -82,7 +82,7 @@ class Bulk
 
     /**
      * Get the index name
-     * @return mixed
+     * @return string|bool
      */
     protected function getIndex()
     {
@@ -91,7 +91,7 @@ class Bulk
 
     /**
      * Set the type name
-     * @param $type
+     * @param string|bool $type
      * @return $this
      */
     public function type($type = false)
@@ -104,7 +104,7 @@ class Bulk
 
     /**
      * Get the type name
-     * @return mixed
+     * @return string|bool
      */
     protected function getType()
     {
@@ -113,7 +113,7 @@ class Bulk
 
     /**
      * Filter by _id
-     * @param bool $_id
+     * @param string|bool $_id
      * @return $this
      */
     public function _id($_id = false)
@@ -126,7 +126,7 @@ class Bulk
 
     /**
      * Just an alias for _id() method
-     * @param bool $_id
+     * @param string|bool $_id
      * @return $this
      */
     public function id($_id = false)
@@ -137,7 +137,7 @@ class Bulk
     /**
      * Add pending document for insert
      * @param array $data
-     * @return mixed
+     * @return array|bool
      */
     public function insert($data = [])
     {
@@ -147,7 +147,7 @@ class Bulk
     /**
      * Add pending document for update
      * @param array $data
-     * @return mixed
+     * @return array|bool
      */
     public function update($data = [])
     {
@@ -157,6 +157,7 @@ class Bulk
 
     /**
      * Add pending document for deletion
+     * @return array|bool
      */
     public function delete()
     {
@@ -168,7 +169,7 @@ class Bulk
      * Add pending document abstract action
      * @param string $actionType
      * @param array $data
-     * @return mixed
+     * @return array|bool
      */
     public function action($actionType, $data = [])
     {
@@ -223,6 +224,7 @@ class Bulk
 
     /**
      * Commit all pending operations
+     * @return array|bool
      */
     public function commit()
     {

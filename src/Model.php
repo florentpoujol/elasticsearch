@@ -146,8 +146,8 @@ class Model
 
     /**
      * Magic getter for model properties
-     * @param $name
-     * @return null
+     * @param string $name
+     * @return mixed
      */
     public function __get($name)
     {
@@ -174,7 +174,7 @@ class Model
 
     /**
      * Get original model attribute
-     * @param $name
+     * @param string $name
      * @return mixed
      */
     protected function getOriginalAttribute($name)
@@ -186,7 +186,7 @@ class Model
 
     /**
      * Get Appends model attribute
-     * @param $name
+     * @param string $name
      * @return mixed
      */
     protected function getAppendsAttribute($name)
@@ -198,8 +198,8 @@ class Model
 
     /**
      * Set attributes casting
-     * @param $name
-     * @param $value
+     * @param string $name
+     * @param mixed $value
      * @return mixed
      */
     protected function setAttributeType($name, $value)
@@ -246,9 +246,9 @@ class Model
 
     /**
      * Handle model properties setter
-     * @param $name
-     * @param $value
-     * @return null
+     * @param string $name
+     * @param mixed $value
+     * @return void
      */
     public function __set($name, $value)
     {
@@ -270,13 +270,16 @@ class Model
 
     /**
      * Create a new model query
-     * @return mixed
+     * @return \Basemkhirat\Elasticsearch\Query
      */
     protected function newQuery()
     {
+        /** @var \Basemkhirat\Elasticsearch\Query $query */
         $query = app("es")->setModel($this);
 
         $query->connection($this->getConnection());
+        // the connection() method doesn't exists on a Query...
+        // but the $connection property is public...
 
         if ($index = $this->getIndex()) {
             $query->index($index);
@@ -304,8 +307,8 @@ class Model
 
     /**
      * Get model by key
-     * @param $key
-     * @return mixed
+     * @param string $key
+     * @return null|\Basemkhirat\Elasticsearch\Model
      */
     public static function find($key)
     {
@@ -340,7 +343,7 @@ class Model
 
     /**
      * Save data to model
-     * @return string
+     * @return $this
      */
     public function save()
     {
@@ -390,7 +393,7 @@ class Model
 
     /**
      * Get model key
-     * @return mixed
+     * @return string
      */
     function getID()
     {
@@ -420,6 +423,4 @@ class Model
     }
 
     public function boot($query){}
-
-
 }

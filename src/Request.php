@@ -37,7 +37,7 @@ class Request
 
     /**
      * Get all query string parameters
-     * @return mixed
+     * @return array
      */
     public static function query()
     {
@@ -46,9 +46,9 @@ class Request
 
     /**
      * Get value of query string parameter
-     * @param $name
-     * @param null $value
-     * @return null
+     * @param string $name
+     * @param mixed $value
+     * @return mixed
      */
     public static function get($name, $value = NULL)
     {

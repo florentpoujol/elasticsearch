@@ -19,8 +19,8 @@ if ( ! function_exists('is_callback_function'))
     /**
      * Check if a callback function.
      *
-     * @param  string $callback
-     * @return string
+     * @param mixed $callback
+     * @return bool
      */
     function is_callback_function($callback)
     {

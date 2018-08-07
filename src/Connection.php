@@ -13,19 +13,19 @@ class Connection
 
     /**
      * Laravel app instance
-     * @var \Illuminate\Foundation\Application|mixed
+     * @var \Illuminate\Contracts\Foundation\Application
      */
     protected $app;
 
     /**
      * Elastic config content
-     * @var
+     * @var array
      */
     protected $config;
 
     /**
      * The current connection
-     * @var
+     * @var \Elasticsearch\Client
      */
     protected $connection;
 
@@ -50,8 +50,8 @@ class Connection
      * Create a native connection
      * suitable for any non-laravel or non-lumen apps
      * any composer based frameworks
-     * @param $config
-     * @return Query
+     * @param array $config
+     * @return \Basemkhirat\Elasticsearch\Query
      */
     public static function create($config)
     {
@@ -78,8 +78,10 @@ class Connection
 
     /**
      * Create a connection for laravel or lumen frameworks
-     * @param $name
-     * @return Query
+     * @param string $name
+     * @return \Basemkhirat\Elasticsearch\Query
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     function connection($name)
     {
@@ -142,7 +144,7 @@ class Connection
 
     /**
      * route the request to the query class
-     * @param $connection
+     * @param string $connection
      * @return Query
      */
     function newQuery($connection)
@@ -161,7 +163,7 @@ class Connection
 
     /**
      * Check if the connection is already loaded
-     * @param $name
+     * @param string $name
      * @return bool
      */
     function isLoaded($name)
@@ -177,8 +179,8 @@ class Connection
 
     /**
      * Set the default connection
-     * @param $name
-     * @param $arguments
+     * @param string $name
+     * @param array $arguments
      * @return mixed
      */
     function __call($name, $arguments)
